@@ -9,17 +9,17 @@ const {connect,close}=require('../database/db.connection')
 let displayAllClient
 exports.displayAllClient = async (req,res)=>{
     let db = await connect ();
-    let client = await seletcAllRequest;
+    let client = await seletcAllClients;
     close();
     res.render('users',{client})
 };
 
 /* DELETE client by ID */ 
 let deleteClientById;
-exports.deleteClientById =async (req,res)=>{
+exports.deleteClientById = async (req,res)=>{
     let clientId = req.params.id;
     let db = await connect();
-    let client = await deletWhereIdIsEqualToUserId;
+    let client = await deletWhereIdIsEqualToCLientId;
     close();
 
     res.redirect('/clients');
@@ -27,20 +27,20 @@ exports.deleteClientById =async (req,res)=>{
 
 /* UPDATE client */
 let displayClientDataToUpdate;
-exports.displayClientDataToUpdate= async (req,res)=>{
+exports.displayClientDataToUpdate = async (req,res)=>{
     let clientId = req.params.id;
     let db = await connect();
-    let client = await selectWhereIdIsEqualToUserId;
+    let client = await selectWhereIdIsEqualToClientId;
     close();
 
     res.render('modify-client',{client})
 }
 
 let updateClient;
-exports.updateClient = async(req,res)=>{
+exports.updateClient = async (req,res)=>{
     let clientId = req.params.id;
     let db = await connect();
-    let client = await updateWhereIdIsEqualToUserId /* req.body to retreive input data from the form */;
+    let client = await updateWhereIdIsEqualToClientId /* req.body to retreive input data from the form */;
     close();
 
 
@@ -48,11 +48,17 @@ exports.updateClient = async(req,res)=>{
 
 
 /* setting route to CREATE a client */
-let creatClient;
-exports.creatClient= async(req,res)=>{
+let displayCreationForm;
+exports.displayCreationForm = async (req,res)=>{
+    res.render('create-client');
+}
+let createClient;
+exports.createClient = async (req,res)=>{
     let db = await connect();
-    let client = await createClient;
+    let client = await createClientRequest;
     close();
+
+    res.redirect('/clients')
 }
 
 
