@@ -1,0 +1,25 @@
+{
+  "name": "stockmate",
+  "version": "1.0.0",
+  "description": "Dans le cadre de ce projet, l'objectif principal est de simplifier et d'optimiser la gestion des clients ainsi que la gestion des stocks de produits. ",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KHMalik03/stockMate.git"
+  },
+  "author": "HADI Kaiss",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KHMalik03/stockMate/issues"
+  },
+  "homepage": "https://github.com/KHMalik03/stockMate#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.0",
+    "sql": "^0.78.0"
+  }
+}
