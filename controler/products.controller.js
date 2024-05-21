@@ -1,24 +1,19 @@
-const express = require('express');
-const router = express.Router();
-
-const {connect,close}=require('../database/db.connection');
+const Product = require('../models/products.model');
 
 /* ---------------------CRUNDS functions----------------------- */
 
 /* SELECT all */
 const displayAllProducts = async (req, res) => {
-    let db = await connect();
-    let product = await seletcAllProducts;
-    close();
+    const product = await Product.findAll();
     res.render('products',{product})
 };
 
 /* DELETE Product by ID */ 
 const deleteProduct = async (req, res) => {
     let productId = req.params.id;
-    let db = await connect();
-    let product = await deletWhereIdIsEqualToProductsId;
-    close();
+    const product = await Product.destroy({
+        where: { id: productId }
+    });
 
     res.redirect('/products')
 };
@@ -26,18 +21,22 @@ const deleteProduct = async (req, res) => {
 /* UPDATE Product */
 const displayProductDataToUpdate = async (req,res) =>{
     let productId = req.params.id;
-    let db = await connect();
-    let product = await selectWhereIdIsEqualToProductId;
-    close();
-
+    const product = await Product.findAll({
+        where : {id : productId}
+    },
+);
     res.render('modify-product',{product})
 };
 
 const updateProduct = async (req,res) =>{
     let productId = req.params.id;
-    let db = await connect();
-    let product = await updateWhereIdIsEqualToProductId;
-    close();
+    const {inputNameInForm} = req.body /* req.body to retreive input data from the form */
+    const product = await Product.update({
+        columnName : inputNameInForm,
+                    /* add other columns */
+    },{
+        where : {id : productId}
+    });
 };
 
 /* setting route to CREATE a Product */
@@ -46,9 +45,11 @@ const displayProductCreationForm = async (req,res) =>{
 };
 
 const createProduct = async (req,res) =>{
-    let db = await connect();
-    let product = await createProductRequest;
-    close();
+    const {inputNameInForm} = req.body /* req.body to retreive input data from the form */ 
+    const product = await Product.create({
+        columnName : inputNameInForm
+            /* add other columns */
+    });
 
     res.redirect('/products')
 };

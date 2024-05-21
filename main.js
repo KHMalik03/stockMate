@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
 
+/* connection to database */
+const connect = require('./database/server');
+connect();
+
 /* setting up the view engine */
 app.set('view engine', 'ejs');
 

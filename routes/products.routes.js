@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-const {connect,close} = require('../database/db.connection')
 const {displayAllProducts,deleteProduct,displayProductDataToUpdate,updateProduct,displayProductCreationForm,createProduct} = require('../controler/products.controller') 
 
 /* -----------------------------CRUDS------------------- */

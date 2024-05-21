@@ -1,23 +1,21 @@
-const express = require('express');
-
-const {connect,close}=require('../database/db.connection');
+const Client = require('../models/clients.model')
 
 /* ---------------------CRUNDS functions----------------------- */
 
 /* SELECT all */
 const displayAllClient = async (req,res)=>{
-    let db = await connect ();
-    let client = await seletcAllClients;
-    close();
+    const client = await Client.findAll();;
     res.render('users',{client})
 };
 
 /* DELETE client by ID */ 
 const deleteClientById = async (req,res)=>{
     let clientId = req.params.id;
-    let db = await connect();
-    let client = await deletWhereIdIsEqualToCLientId;
-    close();
+    let client = await Client.destroy({
+        where : {
+            id : clientId
+        }
+    });
 
     res.redirect('/clients');
 };
@@ -25,20 +23,23 @@ const deleteClientById = async (req,res)=>{
 /* UPDATE client */
 const displayClientDataToUpdate = async (req,res)=>{
     let clientId = req.params.id;
-    let db = await connect();
-    let client = await selectWhereIdIsEqualToClientId;
-    close();
+    const client = await Client.findAll({
+        where :{
+            id : clientId
+        }
+    });
 
     res.render('modify-client',{client})
 };
 
 const updateClient = async (req,res)=>{
     let clientId = req.params.id;
-    let db = await connect();
-    let client = await updateWhereIdIsEqualToClientId /* req.body to retreive input data from the form */;
-    close();
-
-
+    const {inputNamesInForm} = req.body /* req.body to retreive input data from the form */;
+    const client = await Client.update({
+            columnName: inputNamesInForm,
+            /* add other columns */
+        },
+        {where :{id : clientId} });
 };
 
 
@@ -47,9 +48,11 @@ const displayCreationForm = async (req,res)=>{
     res.render('create-client');
 };
 const createClient = async (req,res)=>{
-    let db = await connect();
-    let client = await createClientRequest;
-    close();
+    const {inputNameInForm} = req.body /* req.body to retreive input data from the form */
+    let client = await Client.create({
+        columnName: inputNameInForm,
+        /* add other columns */
+    });
 
     res.redirect('/clients')
 };
