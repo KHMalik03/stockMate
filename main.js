@@ -13,7 +13,7 @@ app.use(clientsRouter);
 
 /* products route */
 const productsRouter = require('../routes/products.routes');
-app.use(productsRouter)
+app.use(productsRouter);
 
 app.listen(3000, () => {
     console.log("Server started at: http://localhost:3000");

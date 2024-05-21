@@ -7,14 +7,14 @@ const {displayAllProducts,deleteProduct,displayProductDataToUpdate,updateProduct
 /* -----------------------------CRUDS------------------- */
 
 /* setting route to SELECT all client */
-router.get('/products',displayAllProducts());
+router.get('/products',displayAllProducts);
 
 /* setting routes to delete client */ 
-router.get('/products/:id/delete',deleteProduct());
+router.get('/products/:id/delete',deleteProduct);
 
 /* setting route to update the client */
-router.get('/products/:id/modify',displayProductDataToUpdate());
-router.post('/products/:id/modify',updateProduct());
+router.get('/products/:id/modify',displayProductDataToUpdate);
+router.post('/products/:id/modify',updateProduct);
 
 /* setting route to CREATE a client */
 router.get('/products/create',displayProductCreationForm);
